@@ -2,10 +2,12 @@ package com.salesianostriana.dam.model;
 
 import lombok.*;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor @AllArgsConstructor

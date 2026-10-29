@@ -1,0 +1,78 @@
+[
+  {
+    "path": ".gitignore",
+    "sha256": "c30fae20ab37a0355836267e19149e383e0a73a9bebb032bed13c0845f7ca0a6"
+  },
+  {
+    "path": "DESIGN.md",
+    "sha256": "2ad98fdfff5563edc2fb576511af4b630fbfa85e81f9e3037becc2d0c1ad877a"
+  },
+  {
+    "path": "README.es.md",
+    "sha256": "a737e99eb4bb4ce686ac2bd7530d1a4078d2d76bed04635f8a3096b26d33fe4a"
+  },
+  {
+    "path": "README.md",
+    "sha256": "6efdc5e4c8f2d17515983c860d3173d3fc911bf6211fa5048b25c521dca86899"
+  },
+  {
+    "path": "THIRD_PARTY.md",
+    "sha256": "b5d04f1ad6b5210da1877f546dc16f116f94e857d5f0069d739b4cbd0a62b09e"
+  },
+  {
+    "path": "docs/verification.json",
+    "sha256": "f3814ee4cbcf9b0173d163a023a0a198707c1604660b5c59f6e96e0eab5478b7"
+  },
+  {
+    "path": "pom.xml",
+    "sha256": "de733fe9330f413aecf9ac305ce16045d1ca5aceec07ac0a8e30845bd5b2c221"
+  },
+  {
+    "path": "src/main/java/com/salesianostriana/dam/DemoData.java",
+    "sha256": "f7d045df4bab9c8d384288c0cc4f29ee33e64a1576018369be493f635e5f924a"
+  },
+  {
+    "path": "src/main/java/com/salesianostriana/dam/controller/VentaController.java",
+    "sha256": "34c750c7a32127c0ae1c967f9dee12fd3d90bb85adaa58eacfa840a9525c4220"
+  },
+  {
+    "path": "src/main/java/com/salesianostriana/dam/controller/VentaErrors.java",
+    "sha256": "eec12c4f1b86e367745ceceff72d9e1ddc6d95744dcec48fb5a64e13db584882"
+  },
+  {
+    "path": "src/main/java/com/salesianostriana/dam/dto/CreateVentaDto.java",
+    "sha256": "4828492f31c5b7cac6a0e7258c8c70ed157453f461b912cb5e31f09b0c1f2662"
+  },
+  {
+    "path": "src/main/java/com/salesianostriana/dam/dto/ProductoCantidadDto.java",
+    "sha256": "a1f0935fa8bb170360cbf023841b2111a1167040a56c1d9fa4041e0d9adabcf6"
+  },
+  {
+    "path": "src/main/java/com/salesianostriana/dam/dto/VentaConverter.java",
+    "sha256": "07a8f085e91a790591f05cd88fd4d8abd100c7a21c3f43ac4b37f80842284b3d"
+  },
+  {
+    "path": "src/main/java/com/salesianostriana/dam/model/LineaDeVenta.java",
+    "sha256": "1fe4a00908af05a837a940cbcb571990e597f6ede5077150eb6489ab8f71868a"
+  },
+  {
+    "path": "src/main/java/com/salesianostriana/dam/service/VentaServicio.java",
+    "sha256": "5e263516537212c3662db06750b5bfba2e52e29393c2facc8a198173af2c70dc"
+  },
+  {
+    "path": "src/main/resources/application.properties",
+    "sha256": "81a547aeb92c56a8c04af31366ead0e21008ac9222937ffd0076d4bd8bdcce7f"
+  },
+  {
+    "path": "src/test/java/com/salesianostriana/dam/VentaHttpJourneyTest.java",
+    "sha256": "4e0a05604e24ad1fcf628d8792f20a8601f9fcb52cffddebd2b15d923a0f48e7"
+  },
+  {
+    "path": "src/test/java/com/salesianostriana/dam/VentaServicioRegressionTest.java",
+    "sha256": "88a996a90f94064bb3508677b482a27e5cfdcafc879f64a3db7907a182299cdb"
+  },
+  {
+    "path": "src/test/java/com/salesianostriana/dam/VentaServicioTest.java",
+    "sha256": "9d72f5eb4bddd6b2b32b68616470381f2f0b20e223cd1dcb53ea807cba539b7e"
+  }
+]

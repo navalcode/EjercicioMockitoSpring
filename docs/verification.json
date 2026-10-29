@@ -1,0 +1,85 @@
+{
+  "kind": "recorded_local_result",
+  "checked_on": "2026-10-29",
+  "platform": "macOS",
+  "jdk": {
+    "version": "17.0.14",
+    "vendor": "Amazon.com Inc."
+  },
+  "source_baseline": "7b0aea0132fb0336d76fd7140d1722521684abed",
+  "checks": [
+    {
+      "module": ".",
+      "command": "sh ./mvnw verify",
+      "tests": {
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "log_sha256": "091f2a2ff4247b356dd51d6523125151c7d4c9ac3e6e85be5b40511eba2da16e",
+      "junit_xml_sha256": [
+        "7f112ce35c2dcc2cdc335895225b721d6804eb6d28ba52c02e3525b70478c601",
+        "8c220852996a0670eacb0d93ebeae2aa63dcdf8f669d374594024a35876a1fb2",
+        "4ddfc245ca52e5cecd3901c0086974dbacf5602bd55355d1deddc53758d92581"
+      ]
+    }
+  ],
+  "test_total": 18,
+  "hosted_ci_run": null,
+  "scope": "Original Maven pins; local JDK17 tests/package with isolated Maven settings/repository. No hosted/production result is implied.",
+  "packaged_runtime": {
+    "scope": "Actual packaged JAR bound to loopback and an OS-assigned port; HTTP requests, not MockMvc",
+    "artifact_sha256": "44b5ac4c93742dd35e626af7d5be638767517403a4e3023004b3f9a2e9040511",
+    "fictional_fixture_request": {
+      "productos": [
+        {
+          "idProducto": 2,
+          "cantidad": 2
+        }
+      ],
+      "clienteId": 1
+    },
+    "journeys": [
+      {
+        "case": "create_from_printed_fictional_fixture",
+        "status": 201,
+        "response": {
+          "nombreCliente": "Demo customer",
+          "fecha": "29/10/2026",
+          "productos": [
+            {
+              "producto": "Sample notebook",
+              "cantidad": 2,
+              "pvp": 2.5,
+              "subtotal": 5.0
+            }
+          ],
+          "total": 5.0
+        }
+      },
+      {
+        "case": "missing_product",
+        "status": 404,
+        "response": {
+          "code": "not_found"
+        }
+      },
+      {
+        "case": "invalid_quantity",
+        "status": 400,
+        "response": {
+          "code": "invalid_request"
+        }
+      },
+      {
+        "case": "duplicate_product",
+        "status": 400,
+        "response": {
+          "code": "invalid_request"
+        }
+      }
+    ],
+    "production_or_external_service": false
+  }
+}

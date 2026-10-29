@@ -1,96 +1,67 @@
 package com.salesianostriana.dam.service;
 
-import com.salesianostriana.dam.model.Cliente;
-import com.salesianostriana.dam.model.LineaDeVenta;
-import com.salesianostriana.dam.model.Producto;
-import com.salesianostriana.dam.model.Venta;
+import com.salesianostriana.dam.model.*;
 import com.salesianostriana.dam.repos.ProductoRepositorio;
 import com.salesianostriana.dam.repos.VentaRepositorio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class VentaServicio {
-
     private final ProductoRepositorio productoRepositorio;
     private final VentaRepositorio ventaRepositorio;
 
     public Venta nuevaVenta(Map<Long, Integer> productos, Cliente cliente) {
-
-        // Creamos la venta
-        Venta v = new Venta();
-        v.setCliente(cliente);
-
-        // Buscamos los productos y los añadimos como líneas de venta
-        productos.keySet().stream()
-                .map(id -> productoRepositorio.findById(id).get())
-                .map(producto -> LineaDeVenta.builder()
-                        .producto(producto)
-                        .pvp(producto.getPrecio())
-                        .cantidad(productos.get(producto.getId()))
-                        .build()
-                )
-                .forEach(v::addLineaVenta);
-
-        ventaRepositorio.save(v);
-        return v;
+        if (cliente == null || productos == null || productos.isEmpty()) {
+            throw new IllegalArgumentException("invalid_sale");
+        }
+        productos.forEach((id, quantity) -> {
+            if (id == null || quantity == null) throw new IllegalArgumentException("invalid_product");
+            requirePositiveQuantity(quantity);
+        });
+        Venta venta = new Venta();
+        venta.setCliente(cliente);
+        productos.forEach((id, quantity) -> {
+            Producto product = productoRepositorio.findById(id)
+                    .orElseThrow(() -> new NoSuchElementException("product_not_found"));
+            venta.addLineaVenta(LineaDeVenta.builder().producto(product)
+                    .pvp(product.getPrecio()).cantidad(quantity).build());
+        });
+        ventaRepositorio.save(venta);
+        return venta;
     }
 
     public Venta addProductoToVenta(Long idVenta, Long codigoProducto, int cantidad) {
-
-        // Buscamos la venta
-
-        Optional<Venta> optionalVenta = ventaRepositorio.findById(idVenta);
-
-        if (optionalVenta.isPresent()) {
-
-            Producto producto = productoRepositorio.findById(codigoProducto).get();
-
-            Venta venta = optionalVenta.get();
-
-            venta.addLineaVenta(
-                    LineaDeVenta.builder()
-                            .producto(producto)
-                            .cantidad(cantidad)
-                            .pvp(producto.getPrecio())
-                            .build()
-            );
-
-            ventaRepositorio.save(venta);
-
-            return venta;
-        }
-
-        return null;
-
-
+        requirePositiveQuantity(cantidad);
+        Venta venta = ventaRepositorio.findById(idVenta).orElse(null);
+        if (venta == null) return null;
+        Producto product = productoRepositorio.findById(codigoProducto).orElse(null);
+        if (product == null) return null;
+        venta.addLineaVenta(LineaDeVenta.builder().producto(product)
+                .cantidad(cantidad).pvp(product.getPrecio()).build());
+        ventaRepositorio.save(venta);
+        return venta;
     }
 
     public Venta removeLineaVenta(Long idVenta, Long idProducto) {
+        Venta venta = ventaRepositorio.findById(idVenta).orElse(null);
+        if (venta == null) return null;
+        List<LineaDeVenta> matching = venta.getLineasDeVenta().stream()
+                .filter(line -> Objects.equals(line.getProducto().getId(), idProducto)).toList();
+        if (matching.isEmpty()) return null;
+        matching.forEach(venta::removeLineaVenta);
+        ventaRepositorio.save(venta);
+        return venta;
+    }
 
-        Optional<Venta> optionalVenta = ventaRepositorio.findById(idVenta);
-
-        if (optionalVenta.isPresent()) {
-
-            Venta venta = optionalVenta.get();
-            Optional<LineaDeVenta> optLineaDeVenta =
-                    venta.getLineasDeVenta().stream().filter(lv -> lv.getProducto().getId() == idProducto)
-                            .findFirst();
-
-
-            venta.removeLineaVenta(optLineaDeVenta.get());
-
-            ventaRepositorio.save(venta);
-
-            return venta;
-        }
-
-        return null;
-
-
+    private void requirePositiveQuantity(int quantity) {
+        if (quantity <= 0) throw new IllegalArgumentException("invalid_quantity");
     }
 }
