@@ -1,13 +1,17 @@
-# EjercicioMockitoSpring
+# Service testing with Mockito
 
-<!-- navalcode:historical-context -->
-**Historical learning project · Proyecto histórico de aprendizaje**
+[English](#overview) · [Español](#resumen)
 
-Java service-testing exercise with a sales-service test suite. This presentation update does not claim a current build or production readiness. Original documentation and attribution are retained below when present.
+## Overview
 
-**Español.** Ejercicio Java de pruebas de servicio con una suite del servicio de ventas. Esta actualización de presentación no acredita compilación actual ni uso en producción. Se conserva la documentación y atribución originales cuando existen.
+Java service-testing exercise with a sales-service test suite.
 
-[Current mobile portfolio / Portfolio móvil actual](https://passkeys.navalcode.org/portfolio/) · [GitHub profile](https://github.com/navalcode)
+An earlier learning exercise. The source is preserved with its original toolchain; compatibility with current versions has not been revalidated.
 
----
+## Resumen
 
+Ejercicio Java de pruebas de servicio con una suite del servicio de ventas.
+
+Ejercicio de una etapa anterior de aprendizaje. Se conserva con sus herramientas originales; no se ha vuelto a validar con versiones actuales.
+
+[More of my work · Más proyectos](https://github.com/navalcode)
